@@ -34,6 +34,7 @@ async function getData() {
             width: 1000,
             height: 700
         },
+        executablePath: "chromium-browser"
     });
 
     // Create new page
@@ -60,6 +61,7 @@ async function getData() {
     const txt = await ok.getProperty('textContent');
     const rawText = await txt.jsonValue();
     await page.setContent(rawText);
+    data = rawText;
     console.log({rawText});
     return rawText;
 }
@@ -69,5 +71,5 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-app.get('/', (req, res) => res.send(getData()));
+app.get('/', (req, res) => res.send(data));
 app.listen(8000, () => getData());
