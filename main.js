@@ -9,18 +9,19 @@ const url = "https://plaza2.rocvantwente.nl/s/plaza/SitePages/rooster.aspx?jaarw
 const username = process.env._USERNAME;
 const password = process.env._PASSWORD;
 const xTable = process.env.XTABLE;
+let data = {};
 
-const connection = sql.createConnection({
-    host: 'localhost',
-    user: process.env.DB_USER,
-    password: process.env.DB_USER,
-    database: "rooster"
-}); 
+// const connection = sql.createConnection({
+//     host: 'localhost',
+//     user: process.env.DB_USER,
+//     password: process.env.DB_USER,
+//     database: "rooster"
+// }); 
 
-connection.connect(err => {
-    if (err) throw err;
-    console.log("Connection established.");
-});
+// connection.connect(err => {
+//     if (err) throw err;
+//     console.log("Connection established.");
+// });
 
 // console.log(process.env);
 
@@ -68,5 +69,5 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.send(getData()));
 app.listen(8000, () => getData());
