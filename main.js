@@ -1,15 +1,28 @@
 require('dotenv').config();
+const sql = require("mysql");
 const puppeteer = require("puppeteer");
 const express = require("express");
 const app = express();
 
 let roc = process.env.ROC;
 const url = "https://plaza2.rocvantwente.nl/s/plaza/SitePages/rooster.aspx?jaarweek=&Klas=8AA1&locatie=ALSU"
-const username = process.env.USERNAME;
-const password = process.env.PASSWORD;
+const username = process.env._USERNAME;
+const password = process.env._PASSWORD;
 const xTable = process.env.XTABLE;
 
-console.log(process.env);
+const connection = sql.createConnection({
+    host: 'localhost',
+    user: process.env.DB_USER,
+    password: process.env.DB_USER,
+    database: "rooster"
+}); 
+
+connection.connect(err => {
+    if (err) throw err;
+    console.log("Connection established.");
+});
+
+// console.log(process.env);
 
 async function getData() {
     
