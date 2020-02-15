@@ -1,15 +1,25 @@
+// Clear the console on startup for Windows.
+process.stdout.write("\u001b[2J\u001b[0;0H");
+
 require('dotenv').config();
 const sql = require("mysql");
 const puppeteer = require("puppeteer");
 const express = require("express");
 const app = express();
 
-let roc = process.env.ROC;
-const url = "https://plaza2.rocvantwente.nl/s/plaza/SitePages/rooster.aspx?jaarweek=&Klas=8AA1&locatie=ALSU"
-const username = process.env._USERNAME;
-const password = process.env._PASSWORD;
+const url = "https://plaza2.rocvantwente.nl/s/plaza/SitePages/rooster.aspx?jaarweek=&Klas=9AA1&locatie=ALSU"
+
+// Variables starting with an underscore are from DOTENV.
+// They are stored in file called .env
+// This file contains sensitive information
+// And therefore it doesn't get shared on github.
+const _u = process.env._USERNAME;
+const _p = process.env._PASSWORD;
 const xTable = process.env.XTABLE;
 let data = {};
+
+
+
 
 // const connection = sql.createConnection({
 //     host: 'localhost',
@@ -23,10 +33,7 @@ let data = {};
 //     console.log("Connection established.");
 // });
 
-// console.log(process.env);
-
 async function getData() {
-    
     // Launch puppeteer browser 
     const browser = await puppeteer.launch({
         headless: false,
@@ -34,7 +41,7 @@ async function getData() {
             width: 1000,
             height: 700
         },
-        executablePath: "chromium-browser"
+        // executablePath: "chromium-browser"
     });
 
     // Create new page
@@ -43,15 +50,14 @@ async function getData() {
     await page.goto(url);
 
     // Fill in the login information and click the login button.
-    await page.type("#gebruikersnaam", username);
-    await page.type("#wachtwoord", password);
+    await page.type("#gebruikersnaam", _u);
+    await page.type("#wachtwoord", _p);
     await Promise.all([
         page.click('[id="inloggen"]'),
         page.waitForNavigation({
             waitUntil: 'networkidle0'
         })
     ]);
-
     // Wait till the page is loaded
     await sleep(2000);
     // Wait for the table which we want to scrape to be loaded
@@ -62,7 +68,6 @@ async function getData() {
     const rawText = await txt.jsonValue();
     await page.setContent(rawText);
     data = rawText;
-    console.log({rawText});
     return rawText;
 }
 
