@@ -6,8 +6,9 @@ const sql = require("mysql");
 const puppeteer = require("puppeteer");
 const express = require("express");
 const app = express();
+//const test = require("/tests/extract_days.js");
 
-const url = "https://plaza2.rocvantwente.nl/s/plaza/SitePages/rooster.aspx?jaarweek=&Klas=9AA1&locatie=ALSU"
+const url = "https://plaza2.rocvantwente.nl/s/plaza/SitePages/rooster.aspx?jaarweek=202010&Klas=9AA1&locatie=ALSU"
 
 // Variables starting with an underscore are from DOTENV.
 // They are stored in file called .env
@@ -26,7 +27,7 @@ let data = {};
 //     user: process.env.DB_USER,
 //     password: process.env.DB_USER,
 //     database: "rooster"
-// }); 
+// });
 
 // connection.connect(err => {
 //     if (err) throw err;
@@ -34,7 +35,7 @@ let data = {};
 // });
 
 async function getData() {
-    // Launch puppeteer browser 
+    // Launch puppeteer browser
     const browser = await puppeteer.launch({
         headless: false,
         defaultViewport: {
@@ -42,6 +43,7 @@ async function getData() {
             height: 700
         },
         // executablePath: "chromium-browser"
+        executablePath: "D:\\Users\\Ok\\Desktop\\chrome-win\\chrome-win\\chrome.exe"
     });
 
     // Create new page
@@ -66,8 +68,9 @@ async function getData() {
     const [ok] = await page.$x(xTable);
     const txt = await ok.getProperty('textContent');
     const rawText = await txt.jsonValue();
-    await page.setContent(rawText);
+    // await page.setContent(rawText);
     data = rawText;
+    await browser.close();
     return rawText;
 }
 
