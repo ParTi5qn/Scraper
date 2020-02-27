@@ -1,6 +1,14 @@
 // Clear the console on startup for Windows.
 process.stdout.write("\u001b[2J\u001b[0;0H");
 
+
+process.stdin.on('keypress', (str, key) => {
+	if(key.ctrl && key.name === 'c'){
+		exit();
+	}
+});
+
+
 require('dotenv').config();
 const sql = require("mysql");
 const puppeteer = require("puppeteer");
