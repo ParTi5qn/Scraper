@@ -1,0 +1,88 @@
+
+
+
+
+Donderdag 13-02-202011:30 - 15:00TijdVakLokaalDocent11:30 -12:30BEP0.325Pierik12:30 -13:00Lesvrij13:00 -14:00BEP0.325Pierik14:00 -15:00WED1.032Jong, de
+
+
+
+Day
+Vrijdag 
+
+Date
+14-02-2020
+
+Total
+10:30 - 16:15
+
+Start
+10:30 - 11:30
+
+Lesson
+NED
+
+Room
+1.021
+
+Teacher
+Zwieten, van
+
+Start
+11:30 - 12:30
+
+Lesson
+PRG
+
+Period
+1.032
+
+Teacher
+Jong, de
+
+Start
+12:30 - 13:00
+
+Lesson
+Lesvrij
+
+Start
+13:00 - 14:00
+
+Lesson
+PRG
+
+Period
+1.032
+
+Teacher
+Jong, de
+
+Period
+14:00 - 15:00
+
+Lesson
+HWU
+
+Period
+1.023
+
+Teacher
+Bonte
+
+Start
+15:00 - 15:15
+
+Lesson
+Lesvrij
+
+Start
+15:15 - 16:15
+
+Lesson
+HWU
+
+Period
+1.023
+
+Teacher
+Bonte
